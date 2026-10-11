@@ -31,3 +31,34 @@
    │ (SQL: INSERT, SELECT, UPDATE)
    ▼
 [ SQLite (データベース) ]
+
+## データベース設計 (Database Schema)
+
+単一の `tasks` テーブルで管理し、SQLインジェクション対策としてプレースホルダー（?）を用いた安全なデータ保存を実装しています。
+
+| 物理名 | 論理名 | データ型 | 制約 | 説明 |
+| :--- | :--- | :--- | :--- | :--- |
+| id | タスクID | INTEGER | PRIMARY KEY (AUTOINCREMENT) | 一意の識別子 |
+| task_name | タスク名 | TEXT | NOT NULL | タスクの内容 |
+| deadline | 期限 | TEXT | | AIが抽出した期限文字列 |
+| status | ステータス | INTEGER | DEFAULT 0 | 0: 未完了, 1: 完了 (論理削除用) |
+
+## 実行手順 (Getting Started)
+
+本アプリはローカル環境でデータベース（SQLite）を自動構築して動作します。
+
+1. 必要なライブラリのインストール
+    pip install google-generativeai
+
+2. APIキーの設定
+`ai_todo.py` の以下の部分をご自身のGemini APIキーに書き換えてください。
+    genai.configure(api_key="ここにキーを挿入")
+
+3. アプリの起動
+    python ai_todo.py
+※初回起動時に、自動で `todo.db` ファイルと必要なテーブルが作成されます。
+
+## 技術的な工夫と学び
+- **Function Callingの活用:** 単なるテキスト生成AIではなく、AIを「システムを操作するエージェント（頭脳）」として扱う実装パターンを学びました。
+- **セキュアなDB操作:** 文字列連結によるSQL発行ではなく、タプルを用いたプレースホルダー渡しを徹底し、SQLインジェクションの脆弱性を防ぎました。
+- **データの永続化と論理削除:** メモリ上ではなくDB（SQLite）にデータを書き込むことの重要性と、履歴を残すための status フラグを用いた論理削除の概念を実装ベースで習得しました。
