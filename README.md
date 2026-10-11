@@ -31,6 +31,7 @@
    │ (SQL: INSERT, SELECT, UPDATE)
    ▼
 [ SQLite (データベース) ]
+```
 
 ## データベース設計 (Database Schema)
 
@@ -43,7 +44,7 @@
 | deadline | 期限 | TEXT | | AIが抽出した期限文字列 |
 | status | ステータス | INTEGER | DEFAULT 0 | 0: 未完了, 1: 完了 (論理削除用) |
 
-## 実行手順 (Getting Started)
+## 実行手順
 
 本アプリはローカル環境でデータベース（SQLite）を自動構築して動作します。
 
@@ -52,7 +53,7 @@
 
 2. APIキーの設定
 `ai_todo.py` の以下の部分をご自身のGemini APIキーに書き換えてください。
-    genai.configure(api_key="ここにキーを挿入")
+    genai.configure(api_key="(ここにAPIキーを入力)")
 
 3. アプリの起動
     python ai_todo.py
