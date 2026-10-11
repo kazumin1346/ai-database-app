@@ -1,1 +1,1 @@
-# ai-database-app
+# AI-Database-App
