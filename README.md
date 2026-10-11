@@ -52,11 +52,11 @@
     pip install google-generativeai
 
 2. APIキーの設定
-`ai_todo.py` の以下の部分をご自身のGemini APIキーに書き換えてください。
+`todo-app-with-Gemini.py` の以下の部分をご自身のGemini APIキーに書き換えてください。
     genai.configure(api_key="(ここにAPIキーを入力)")
 
 3. アプリの起動
-    python ai_todo.py
+    python todo-app-with-Gemini.py
 ※初回起動時に、自動で `todo.db` ファイルと必要なテーブルが作成されます。
 
 ## 技術的な工夫と学び
